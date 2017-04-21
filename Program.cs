@@ -3,8 +3,8 @@
 
 using Microsoft.Azure.Management.AppService.Fluent;
 using Microsoft.Azure.Management.Fluent;
-using Microsoft.Azure.Management.Resource.Fluent;
-using Microsoft.Azure.Management.Resource.Fluent.Core;
+using Microsoft.Azure.Management.ResourceManager.Fluent;
+using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
 using Microsoft.Azure.Management.Samples.Common;
 using Microsoft.Azure.Management.Sql.Fluent;
 using System;
@@ -34,7 +34,6 @@ namespace ManageWebAppSqlConnection
             string appUrl = appName + Suffix;
             string sqlServerName = SdkContext.RandomResourceName("jsdkserver", 20);
             string sqlDbName = SdkContext.RandomResourceName("jsdkdb", 20);
-            string planName = SdkContext.RandomResourceName("jplan_", 15);
             string rgName = SdkContext.RandomResourceName("rg1NEMV_", 24);
 
             try
@@ -70,10 +69,9 @@ namespace ManageWebAppSqlConnection
 
                 IWebApp app = azure.WebApps
                         .Define(appName)
-                        .WithExistingResourceGroup(rgName)
-                        .WithNewAppServicePlan(planName)
                         .WithRegion(Region.USWest)
-                        .WithPricingTier(AppServicePricingTier.StandardS1)
+                        .WithExistingResourceGroup(rgName)
+                        .WithNewWindowsPlan(PricingTier.StandardS1)
                         .WithPhpVersion(PhpVersion.V5_6)
                         .DefineSourceControl()
                             .WithPublicGitRepository("https://github.com/ProjectNami/projectnami")
@@ -94,7 +92,7 @@ namespace ManageWebAppSqlConnection
                 Utilities.Log("Allowing web app " + appName + " to access SQL server...");
 
                 Microsoft.Azure.Management.Sql.Fluent.SqlServer.Update.IUpdate update = server.Update();
-                foreach (var ip in app.OutboundIpAddresses)
+                foreach (var ip in app.OutboundIPAddresses)
                 {
                     update = update.WithNewFirewallRule(ip);
                 }
@@ -137,7 +135,7 @@ namespace ManageWebAppSqlConnection
 
                 var azure = Azure
                     .Configure()
-                    .WithLogLevel(HttpLoggingDelegatingHandler.Level.BASIC)
+                    .WithLogLevel(HttpLoggingDelegatingHandler.Level.Basic)
                     .Authenticate(credentials)
                     .WithDefaultSubscription();
 
@@ -149,14 +147,6 @@ namespace ManageWebAppSqlConnection
             catch (Exception e)
             {
                 Utilities.Log(e);
-            }
-        }
-
-        private static HttpResponseMessage CheckAddress(string url)
-        {
-            using (var client = new HttpClient())
-            {
-                return client.GetAsync(url).Result;
             }
         }
     }

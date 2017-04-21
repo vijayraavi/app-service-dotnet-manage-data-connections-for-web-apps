@@ -4,7 +4,7 @@ platforms: .Net
 author: jianghaolu
 ---
 
-#Getting Started with App - Manage Web App Sql Connection - in .Net #
+# Getting Started with App - Manage Web App Sql Connection - in .Net #
 
           Azure App Service basic sample for managing web apps.
            - Create a SQL database in a new SQL server
