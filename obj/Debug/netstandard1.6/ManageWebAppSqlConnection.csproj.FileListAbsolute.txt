@@ -1,0 +1,2 @@
+C:\Sources\dotnet-samples\app-service-dotnet-manage-data-connections-for-web-apps\bin\Debug\netstandard1.6\ManageWebAppSqlConnection.deps.json
+C:\Sources\dotnet-samples\app-service-dotnet-manage-data-connections-for-web-apps\obj\Debug\netstandard1.6\ManageWebAppSqlConnection.csproj.CoreCompileInputs.cache

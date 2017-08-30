@@ -1,0 +1,4 @@
+C:\Sources\dotnet-samples\app-service-dotnet-manage-data-connections-for-web-apps\bin\Debug\net452\ManageWebAppSqlConnection.runtimeconfig.json
+C:\Sources\dotnet-samples\app-service-dotnet-manage-data-connections-for-web-apps\bin\Debug\net452\ManageWebAppSqlConnection.runtimeconfig.dev.json
+C:\Sources\dotnet-samples\app-service-dotnet-manage-data-connections-for-web-apps\obj\Debug\net452\ManageWebAppSqlConnection.csproj.ManageWebAppSqlConnection.exe.config
+C:\Sources\dotnet-samples\app-service-dotnet-manage-data-connections-for-web-apps\obj\Debug\net452\ManageWebAppSqlConnection.csproj.CoreCompileInputs.cache
